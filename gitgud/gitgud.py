@@ -1,7 +1,12 @@
-from gitgud import ui
-
+from gitgud.ui import GitGudUi
+from PyQt5.QtWidgets import QApplication
+import sys
 
 def main():
-    ui.ui_startup()
+    app = QApplication(sys.argv)
+    app.setApplicationName("GitGud")
+    demo = GitGudUi()
+    demo.show()
+    sys.exit(app.exec_())
 
 

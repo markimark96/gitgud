@@ -1,13 +1,23 @@
-from PyQt5.QtWidgets import QApplication, QWidget
-import sys
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QGridLayout, QLabel, QMenuBar, QPushButton, QStatusBar, QToolBar, QToolButton, QWidget, QMainWindow
 
-def ui_startup():
-    app = QApplication(sys.argv)
-    app.setApplicationName("GitGud")
 
-    window = QWidget()
-    window.show()
-    window.setStyleSheet("background-color: #262626;")
+class GitGudUi(QMainWindow):
+    def __init__(self):
+       super().__init__()
+       self.setStyleSheet("background-color: #262626;")
+       self.showMaximized()
+       self._addMenuBar()
+       self._addToolBar()
 
-    app.exec()
-    
+
+    def _addMenuBar(self):
+        self.menuBar = self.menuBar()
+        self.menuBar.setStyleSheet("background-color: #737373;")
+        fileMenu = self.menuBar.addMenu('&File')
+        editMenu = self.menuBar.addMenu('&Edit')
+        helpMenu = self.menuBar.addMenu('&Help')
+        openAction = fileMenu.addAction("Open")
+
+    def _addToolBar(self):
+        self.toolBar = self.addToolBar("Tool bar")
