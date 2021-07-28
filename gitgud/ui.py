@@ -27,6 +27,7 @@ class GitGudUi(QMainWindow):
             "background-color: #052f4d;"+
             "color: white;"
             )
+        self.toolBar.setMovable(False)
         refreshButton = self._createToolButton(self.toolBar,"gitgud/assets/refresh.png","Refresh")
         pushButton = self._createToolButton(self.toolBar,"gitgud/assets/push.png","Push")
         pullButton = self._createToolButton(self.toolBar,"gitgud/assets/pull.png","Pull")
