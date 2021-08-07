@@ -11,6 +11,7 @@ class GitGudUi(QMainWindow):
        self.showMaximized()
        self._addMenuBar()
        self._addToolBar()
+       self._addSideBar()
        self._addTabs()
 
 
@@ -52,13 +53,34 @@ class GitGudUi(QMainWindow):
         toolBar.addWidget(button)
         return button
 
+    def _addSideBar(self):
+        self.sideBar = QToolBar("sideBar")
+        self.sideBar.setStyleSheet(
+            "background-color: #052f4d;"+
+            "color: white;"
+            )
+        self.sideBar
+        self.sideBar.setMovable(False)
+
+        self.sideTabs = QTabWidget(self)
+        self.changeTab = QWidget()
+        self.branchesTab = QWidget()
+        self.sideTabs.addTab(self.changeTab,"Changes")
+        self.sideTabs.addTab(self.branchesTab,"Branches")
+        self.sideBar.addWidget(self.sideTabs)
+
+        self.addToolBar(QtCore.Qt.RightToolBarArea,self.sideBar)
+
     def _addTabs(self):
         self.tabs = QTabWidget(self)
-        self.tab0 = QWidget()
+        self.tabs.setStyleSheet("color: white;")
         self.tab1 = QWidget()
         self.tab2 = QWidget()
 
-        self.tabs.addTab(self.tab0,QIcon("gitgud/assets/add.png"),"")
+        button = QPushButton()
+        button.setIcon(QIcon("gitgud/assets/add.png"))
+        self.tabs.setCornerWidget(button,Qt.Corner.BottomLeftCorner)
+
         self.tabs.addTab(self.tab1,"Tab1")
         self.tabs.addTab(self.tab2,"Tab2")
         self.setCentralWidget(self.tabs)
