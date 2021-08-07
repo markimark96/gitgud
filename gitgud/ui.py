@@ -1,7 +1,7 @@
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QGridLayout, QLabel, QMenu, QMenuBar, QPushButton, QStatusBar, QToolBar, QToolButton, QWidget, QMainWindow
+from PyQt5.QtWidgets import QApplication, QGridLayout, QLabel, QMenu, QMenuBar, QPushButton, QStatusBar, QTabBar, QTabWidget, QToolBar, QToolButton, QVBoxLayout, QWidget, QMainWindow
 
 
 class GitGudUi(QMainWindow):
@@ -11,6 +11,7 @@ class GitGudUi(QMainWindow):
        self.showMaximized()
        self._addMenuBar()
        self._addToolBar()
+       self._addTabs()
 
 
     def _addMenuBar(self):
@@ -50,3 +51,15 @@ class GitGudUi(QMainWindow):
         button.setToolButtonStyle(QtCore.Qt.ToolButtonStyle.ToolButtonTextUnderIcon)
         toolBar.addWidget(button)
         return button
+
+    def _addTabs(self):
+        self.tabs = QTabWidget(self)
+        self.tab0 = QWidget()
+        self.tab1 = QWidget()
+        self.tab2 = QWidget()
+
+        self.tabs.addTab(self.tab0,QIcon("gitgud/assets/add.png"),"")
+        self.tabs.addTab(self.tab1,"Tab1")
+        self.tabs.addTab(self.tab2,"Tab2")
+        self.setCentralWidget(self.tabs)
+        
