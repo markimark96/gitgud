@@ -1,7 +1,7 @@
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QGridLayout, QLabel, QMenu, QMenuBar, QPushButton, QStatusBar, QTabBar, QTabWidget, QToolBar, QToolButton, QVBoxLayout, QWidget, QMainWindow
+from PyQt5.QtWidgets import QApplication, QDialog, QDialogButtonBox, QFileDialog, QGridLayout, QLabel, QMenu, QMenuBar, QPushButton, QStatusBar, QTabBar, QTabWidget, QToolBar, QToolButton, QVBoxLayout, QWidget, QMainWindow
 
 
 class GitGudUi(QMainWindow):
@@ -79,9 +79,14 @@ class GitGudUi(QMainWindow):
 
         button = QPushButton()
         button.setIcon(QIcon("gitgud/assets/add.png"))
+        button.clicked.connect(self._openNewRepoDialog)
         self.tabs.setCornerWidget(button,Qt.Corner.BottomLeftCorner)
 
         self.tabs.addTab(self.tab1,"Tab1")
         self.tabs.addTab(self.tab2,"Tab2")
         self.setCentralWidget(self.tabs)
+
+    def _openNewRepoDialog(self,s):
+        selected_dir = QFileDialog.getExistingDirectory(self, caption='Choose Directory')
+        print(selected_dir)
         
