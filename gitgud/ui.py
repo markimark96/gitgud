@@ -1,3 +1,4 @@
+from gitgud.models import GitTree
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
@@ -87,6 +88,9 @@ class GitGudUi(QMainWindow):
         self.setCentralWidget(self.tabs)
 
     def _openNewRepoDialog(self,s):
-        selected_dir = QFileDialog.getExistingDirectory(self, caption='Choose Directory')
-        print(selected_dir)
+        directory = QFileDialog.getExistingDirectory(self, caption='Choose Directory')
+        gitTree = GitTree(directory)
+        self.tabs.addTab(QWidget(),gitTree.name)
+
+
         
